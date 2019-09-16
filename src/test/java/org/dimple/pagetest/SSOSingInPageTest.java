@@ -24,6 +24,8 @@ public class SSOSingInPageTest extends BaseTest {
 		signInPage = new SSOSingInPage(getDriver());
 	}
 	
+	// note:
+	// write description when ever you creating test to get descriptive  name in report
 	
 	@Test(description = "Login Test with valid credential")
 	public void validLoginTest() throws Throwable {
@@ -35,6 +37,9 @@ public class SSOSingInPageTest extends BaseTest {
 		signInPage.enterPassword(config.defaultPassword);
 		log.info("Executing the step : click on login button");
 		signInPage.clickOnLogin();
+		
+		// To Do:
+		// verify successful login and user is entered into home page successfully
 		
 		
 	}
@@ -48,7 +53,10 @@ public class SSOSingInPageTest extends BaseTest {
 		log.info("Executing the step : click on login button");
 		signInPage.clickOnLogin();
 		
-		Assert.fail();
+		// to do:
+		// verify error message
+		
+		Assert.fail("Failing it knowingly");
 		
 		
 	}
@@ -63,7 +71,11 @@ public class SSOSingInPageTest extends BaseTest {
 		log.info("Executing the step : click on login button");
 		signInPage.clickOnLogin();
 		
-		Assert.fail();
+		
+		// to do:
+		// verify error message
+		
+	
 		
 		
 	}
