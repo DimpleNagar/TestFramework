@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public class Config {
 
-	public String configFile = "/TestFramework/src/test/resources/config.properties";
+	public String configFile = "./src/test/resources/config.properties";
 
 	// create variables to store values from file: config.properties
 	public String baseURL;
@@ -19,8 +19,11 @@ public class Config {
 	public long shortWait;
 	public long mediumtWait;
 	public long longWait;
+	
+	
+	private static Config config = null;
 
-	public Config() {
+	private Config() {
 		readConfig();
 	}
 
@@ -33,15 +36,16 @@ public class Config {
 
 			Properties props = new Properties();
 			props.load(fis);
-			baseURL = props.getProperty("baseURL");
-			baseURL = props.getProperty("browser");
+			baseURL = props.getProperty("baseURL").trim();
+			browser = props.getProperty("browser").trim();
 
-			baseURL = props.getProperty("defaultUserName");
-			baseURL = props.getProperty("defaultPassword");
+			defaultUserName = props.getProperty("defaultUserName").trim();
+			defaultPassword = props.getProperty("defaultPassword").trim();
+			
 
-			shortWait = new Long(props.getProperty("shortWait")).longValue();
-			mediumtWait = new Long(props.getProperty("mediumWait")).longValue();
-			longWait = new Long(props.getProperty("longWait")).longValue();
+			shortWait = new Long(props.getProperty("shortWait").trim()).longValue();
+			mediumtWait = new Long(props.getProperty("mediumWait").trim()).longValue();
+			longWait = new Long(props.getProperty("longWait").trim()).longValue();
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -50,6 +54,13 @@ public class Config {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public static Config getConfig()
+	{
+		if(config == null)
+			config = new Config();
+		return config;
 	}
 
 }
